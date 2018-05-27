@@ -1,0 +1,11 @@
+Table: ip
+------------+---------------+------+-----+-------------------+---------
+ Field      | Type          | Null | Key | Default           | Remarks 
+------------+---------------+------+-----+-------------------+---------
+ id         | INT(10)       | NO   | PRI |                   |         
+ ip         | CHAR(32)      | YES  |     |                   |         
+ status     | TINYINT(3)    | YES  |     | 0                 | 0,未检测;1,http;2,https;3,http+s;4,del
+ createTime | TIMESTAMP(19) | YES  |     | CURRENT_TIMESTAMP |         
+ updateTime | TIMESTAMP(19) | YES  |     | CURRENT_TIMESTAMP |         
+------------+---------------+------+-----+-------------------+---------
+
