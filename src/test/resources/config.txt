@@ -1,4 +1,4 @@
 jdbcUrl = jdbc:mysql://localhost:3306/ip_pool?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull
 user = root
-password =775788601
+password = 密码
 devMode = true
