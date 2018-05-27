@@ -33,3 +33,13 @@ CREATE TABLE `ip` (
 
 ＝ ＝新手写东西，里面还说有坑的。
 
+## 如何获取数据？
+
+
+http://localhost/get/{Ip数} or http://localhost/getall/{Ip数}
+
+http://localhost/gethttp/{Ip数}
+
+http://localhost/gethttps/{Ip数}
+
+

@@ -80,7 +80,9 @@ public class MyThread {
                 updateProxy(proxy,status);
             }
         }else {//save
-            saveProxy(proxy,status);
+            if(status != 4){
+                saveProxy(proxy,status);
+            }
         }
     }
     public void checkProxyForThread(String proxy,Boolean flag,Integer threadCount,Integer timeout){
