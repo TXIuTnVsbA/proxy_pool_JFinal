@@ -52,37 +52,41 @@ public class MyThread {
         }
     }
     public void checkProxyForLogic(String proxy,Boolean flag){
-        Integer status=0;
-        Boolean http = false;
-        Boolean https = false;
-        http = HttpUtils.checkProxy("http://2018.ip138.com/ic.asp",proxy);
-        https= HttpUtils.checkProxy("https://myip.kkcha.com/",proxy);
-        if (http) {
-            status = 1;
-            System.out.print(proxy + "\thttp\tOK\n");
-        }
-        if (https) {
-            status = 2;
-            System.out.print(proxy + "\thttps\tOK\n");
-        }
-        if (http && https) {
-            status = 3;
-            System.out.print("\n");
-        }
-        if (!http && !https) {
-            status = 4;
-            System.out.print(proxy + "\tNot\tOK\n");
-        }
-        if(flag){//update
-            if(status == 4){
-                deleProxy(proxy);
-            }else {
-                updateProxy(proxy,status);
+        try {
+            Integer status=0;
+            Boolean http = false;
+            Boolean https = false;
+            http = HttpUtils.checkProxy("http://2018.ip138.com/ic.asp",proxy);
+            https= HttpUtils.checkProxy("https://myip.kkcha.com/",proxy);
+            if (http) {
+                status = 1;
+                System.out.print(proxy + "\thttp\tOK\n");
             }
-        }else {//save
-            if(status != 4){
-                saveProxy(proxy,status);
+            if (https) {
+                status = 2;
+                System.out.print(proxy + "\thttps\tOK\n");
             }
+            if (http && https) {
+                status = 3;
+                System.out.print("\n");
+            }
+            if (!http && !https) {
+                status = 4;
+                System.out.print(proxy + "\tNot\tOK\n");
+            }
+            if(flag){//update
+                if(status == 4){
+                    deleProxy(proxy);
+                }else {
+                    updateProxy(proxy,status);
+                }
+            }else {//save
+                if(status != 4){
+                    saveProxy(proxy,status);
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
     public void checkProxyForThread(String proxy,Boolean flag,Integer threadCount,Integer timeout){
@@ -97,6 +101,7 @@ public class MyThread {
                 }
             }
         });
+        thread.setName(proxy);
         thread.start();
         threads.add(thread);
         if((i % threadCount) == 0){
@@ -106,6 +111,10 @@ public class MyThread {
                     thread1.join(timeout);
                     if(thread1.isAlive()){
                         thread1.interrupt();
+                        System.out.print(thread1.getName()+":\tTime Out\n");
+                        if(flag){
+                            deleProxy(thread1.getName());
+                        }
                     }
                 }catch (InterruptedException e){
                     e.printStackTrace();

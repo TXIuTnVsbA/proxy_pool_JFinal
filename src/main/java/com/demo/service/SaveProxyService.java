@@ -7,7 +7,7 @@ public class SaveProxyService {
     public void start(){
         for(int i=0;i<10;i++){
             try {
-                new CrawlingFrom66ip().saveProxyFromInternet(100,0,64,500);
+                new CrawlingFrom66ip().saveProxyFromInternet(100,0,64,200);
             } catch (Exception e) {
                 e.printStackTrace();
             }
